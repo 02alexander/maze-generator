@@ -9,18 +9,7 @@ pub fn depth_first(mut maze: Maze) -> Maze {
 	maze.init();
 	let mut back_tracker = Vec::<Coordinate>::new();
 	let mut last = maze.start;
-	'start: while {	
-		/*let cur = if let Some(cell) = get_unvisited_neighbor(&maze, last) {
-			back_tracker.push(cell);
-			cell
-		} else {
-			back_tracker.pop().unwrap()
-		};
-		println!("({}, {}), ({}, {})", last.x,last.y,cur.x,cur.y);
-		maze.connect(cur,last);
-		!back_tracker.is_empty()
-		*/
-
+	while {	
 		if let Some(cell) = get_unvisited_neighbor(&maze, last) {
 			back_tracker.push(cell);
 			maze.connect(cell, last);
@@ -31,10 +20,6 @@ pub fn depth_first(mut maze: Maze) -> Maze {
 		!back_tracker.is_empty()
 	} {}
 	maze
-}
-
-fn is_dead(maze: &Maze, cell: Coordinate) -> bool {
-	get_unvisited_neighbor(&maze, cell).is_none()
 }
 
 fn get_unvisited_neighbor(maze: &Maze, cell: Coordinate) -> Option<Coordinate> {
@@ -62,6 +47,7 @@ fn get_unvisited_neighbor(maze: &Maze, cell: Coordinate) -> Option<Coordinate> {
 
 }
 
+#[cfg(test)]
 mod test {
 	use super::*;
 

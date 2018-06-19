@@ -28,6 +28,7 @@ impl Maze {
 		}
 	}
 
+	///Creates all the cells.
 	pub fn init(&mut self) {
 		for i in (0..self.width).filter(|x|x%2==0) {
 			for j in (0..self.height).filter(|x|x%2==0) {
@@ -106,8 +107,9 @@ impl Coordinate {
 	}
 }
 
+#[cfg(test)]
 mod test {
-	use super::{Coordinate, Maze};
+	use super::{Maze, Coordinate};
 
 	#[test]
 	fn constructor() {

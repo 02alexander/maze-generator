@@ -6,3 +6,4 @@ authors = ["alexander"]
 [dependencies]
 imagefmt = "4.0.0"
 rand = "0.5.1"
+clap = "2.31.2"
