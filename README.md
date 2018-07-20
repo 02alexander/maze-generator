@@ -10,12 +10,11 @@ $ sudo pacman -S rust
 ```
 To build it run
 ```
-$ cargo run --release
+$ cargo build --release
 ```
 Then you will have an executable in the target/release/ directory.
 
 ### Usage
-run
 ```
 $ cd target/release/
 $ ./maze-generator --width=30 --heigth=50 -o maze.png
