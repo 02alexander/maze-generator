@@ -8,7 +8,6 @@ use maze::maze::{Maze, Coordinate};
 use maze::depthfirstsearch::depth_first;
 use std::str::FromStr;
 use std::process::exit;
-use std::error::Error;
 
 mod maze;
 
@@ -50,10 +49,22 @@ fn main() {
 	let std_height = 19;
 
 	let width = if let Some(width_str) = matches.value_of("Width") {
-		width_str.parse::<usize>().unwrap_or(std_width)
+		match width_str.parse::<usize>() {
+			Ok(num) => num,
+			Err(e) => {
+				eprintln!("Error reading width, Cause: {:?}", e);
+				exit(1);
+			}
+		}
 	} else { std_width };
 	let height = if let Some(height_str) = matches.value_of("Height") {
-		height_str.parse::<usize>().unwrap_or(std_height)
+		match height_str.parse::<usize>() {
+			Ok(num) => num,
+			Err(e) => {
+				eprintln!("Error reading height, Cause: {:?}", e);
+				exit(1);
+			}
+		}
 	} else { std_height };
 
 	let std_start = Coordinate::new(0,0);
