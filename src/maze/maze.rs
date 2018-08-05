@@ -64,17 +64,17 @@ impl Maze {
 		image
 	}
 
-	/// Rounds the coordinates to the nearest odd number, then sets it as the end.
+	/// Rounds the coordinates to the nearest even number, then sets it as the end.
 	pub fn set_end(&mut self, end: Coordinate) {
-		self.end = Coordinate::new(end.x-(end.x+1)%2, end.y-(end.y+1)%2);
+		self.end = Coordinate::new(end.x-end.x%2, end.y-end.y%2);
 	}
 
-	/// Rounds the coordinates to the nearest odd number, then sets it as the end.
+	/// Rounds the coordinates to the nearest even number, then sets it as the end.
 	pub fn set_start(&mut self, start: Coordinate) {
-		self.start = Coordinate::new(start.x-(start.x+1)%2, start.y-(start.y+1)%2);
+		self.start = Coordinate::new(start.x-start.x%2, start.y-start.y%2);
 	}
 
-	///Returns true if any neighbouring tile is a path. 
+	/// Returns true if any neighbouring tile is a path. 
 	pub fn is_visited(&self, cell: Coordinate) -> bool {
 
 		let mut is_visited = false; // set to true when we find an adjacent tile

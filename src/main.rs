@@ -16,7 +16,7 @@ fn main() {
 	let matches = App::new("maze_generator")
 		.about("The length and width must always be an odd number. 
 			If an even number is given as input it will round it down to an odd number. 
-			The same rules apply for the start and end coordinates of the Maze,")
+			The start and end coordinates must be even.")
 		.author("Alexander Berntsson. <alexande.berntsson@gmail.com>")
 		.arg(Arg::with_name("Width")
 			.short("w")
