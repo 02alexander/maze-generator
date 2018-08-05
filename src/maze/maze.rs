@@ -1,4 +1,7 @@
 
+use std::str::FromStr;
+use std::num::ParseIntError;
+
 pub struct Maze {
 	pub width: usize,
 	pub height: usize,
@@ -61,6 +64,16 @@ impl Maze {
 		image
 	}
 
+	/// Rounds the coordinates to the nearest odd number, then sets it as the end.
+	pub fn set_end(&mut self, end: Coordinate) {
+		self.end = Coordinate::new(end.x-(end.x+1)%2, end.y-(end.y+1)%2);
+	}
+
+	/// Rounds the coordinates to the nearest odd number, then sets it as the end.
+	pub fn set_start(&mut self, start: Coordinate) {
+		self.start = Coordinate::new(start.x-(start.x+1)%2, start.y-(start.y+1)%2);
+	}
+
 	///Returns true if any neighbouring tile is a path. 
 	pub fn is_visited(&self, cell: Coordinate) -> bool {
 
@@ -104,6 +117,19 @@ impl Maze {
 impl Coordinate {
 	pub fn new(x: usize, y: usize) -> Self {
 		Coordinate { x:x, y:y }
+	}
+}
+
+impl FromStr for Coordinate {
+	type Err = ParseIntError;
+
+	fn from_str(s: &str) -> Result<Self, Self::Err> {
+		let coords: Vec<&str> = s.trim_matches(|p| p == '(' || p == ')')
+								 .split(",")
+								 .collect();
+		let x = coords[0].parse::<usize>()?;
+		let y = coords[1].parse::<usize>()?;
+		Ok(Coordinate::new(x,y))
 	}
 }
 
