@@ -16,6 +16,5 @@ Then you will have an executable in the target/release/ directory.
 
 ### Usage
 ```
-$ cd target/release/
-$ ./maze-generator --width=30 --heigth=50 -o maze.png
+$ cargo run --release -- --width=50 --height=50 -o maze.png
 ```
